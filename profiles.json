@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "default": {
+      "name": "Par défaut",
+      "createInstruction": "Tu es un rédacteur francophone précis. Respecte la consigne. Réponds uniquement par le texte demandé.",
+      "editInstruction": "Tu es un éditeur francophone rigoureux. Ne change pas le sens. Garde la voix de l'auteur. Réponds uniquement par le texte révisé.",
+      "docFiles": []
+    }
+  },
+  "activeProfile": "default"
+}

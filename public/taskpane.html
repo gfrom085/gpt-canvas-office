@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <link rel="stylesheet" href="./styles.css"/>
+  <title>GPT Canvas Lite</title>
+</head>
+<body>
+  <h3>GPT Canvas Lite</h3>
+
+  <section class="card">
+    <h4>Créer</h4>
+    <textarea id="prompt" placeholder="Décris ce que tu veux écrire..."></textarea>
+    <div class="row">
+      <button id="btnGenerate">Générer</button>
+      <label><input type="checkbox" id="asComment" checked> Insérer en commentaire (Word)</label>
+    </div>
+  </section>
+
+  <section class="card">
+    <h4>Éditer la sélection</h4>
+    <div class="row">
+      <select id="intent">
+        <option value="clarify">Clarifier/simplifier</option>
+        <option value="proofread">Corriger grammaire/style</option>
+        <option value="rewrite">Réécrire plus percutant</option>
+      </select>
+      <button id="btnEdit">Proposer</button>
+    </div>
+    <textarea id="createPrompt" placeholder="Décris ce que tu veux créer..."></textarea>
+  </section>
+
+  <section class="card">
+    <h4>Proposition</h4>
+    <textarea id="out" placeholder="Tu peux ajuster avant d'appliquer"></textarea>
+    <div class="row">
+      <button id="btnApply">Appliquer</button>
+      <button id="btnCopy">Copier</button>
+    </div>
+    <div id="msg"></div>
+  </section>
+
+  <script type="module" src="./taskpane.js"></script>
+</body>
+</html>

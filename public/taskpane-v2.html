@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <link rel="stylesheet" href="taskpane-v2.css"/>
+  <title>GPT Canvas Lite</title>
+</head>
+<body>
+  <main id="app-body" class="ms-welcome">
+    <header class="ms-welcome__header ms-bgColor-neutralLighter">
+      <div class="header-row">
+        <h3 class="ms-font-l">GPT Canvas Lite</h3>
+        <button id="btnSettings" class="settings-gear" title="Paramètres">
+          ⚙️
+        </button>
+      </div>
+    </header>
+
+    <!-- Panneau de paramètres (caché par défaut) -->
+    <div id="settingsPanel" class="settings-panel" style="display: none;">
+      <div class="card">
+        <h4 class="ms-font-l">⚙️ Paramètres GPT</h4>
+        
+        <div class="setting-group">
+          <label class="ms-font-m">Modèle GPT :</label>
+          <select id="gptModel" class="ms-Dropdown">
+            <option value="gpt-5">GPT-5 (Premium)</option>
+            <option value="gpt-5-mini">GPT-5 Mini (Rapide)</option>
+            <option value="gpt-5-nano">GPT-5 Nano (Ultra Rapide)</option>
+          </select>
+        </div>
+        
+        <div class="setting-group">
+          <label class="ms-font-m">Effort de raisonnement :</label>
+          <select id="reasoningEffort" class="ms-Dropdown">
+            <option value="minimal">Minimal (Rapide)</option>
+            <option value="low">Faible</option>
+            <option value="medium" selected>Moyen</option>
+            <option value="high">Élevé (Détaillé)</option>
+          </select>
+        </div>
+        
+        <div class="setting-group">
+          <label class="ms-font-m">Verbosité :</label>
+          <select id="verbosity" class="ms-Dropdown">
+            <option value="low">Courte</option>
+            <option value="medium" selected>Moyenne</option>
+            <option value="high">Détaillée</option>
+          </select>
+        </div>
+        
+        <div class="row">
+          <button id="btnSaveSettings" class="ms-Button ms-Button--primary">
+            <span class="ms-Button-label">Sauvegarder</span>
+          </button>
+          <button id="btnCloseSettings" class="ms-Button">
+            <span class="ms-Button-label">Fermer</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Gestionnaire d'Instructions -->
+      <div class="card">
+        <h4 class="ms-font-l">🎯 Gestionnaire d'Instructions</h4>
+        
+        <div class="setting-group">
+          <label class="ms-font-m">Profil :</label>
+          <div class="profile-selector">
+            <select id="profileSelect" class="ms-Dropdown">
+              <option value="default">Par défaut</option>
+            </select>
+            <button id="btnNewProfile" class="ms-Button ms-Button--secondary">
+              <span class="ms-Button-label">+ Nouveau</span>
+            </button>
+          </div>
+        </div>
+        
+        <div class="setting-group">
+          <label class="ms-font-m">📝 Instruction Création :</label>
+          <textarea id="createInstruction" class="ms-TextField-field" rows="3" placeholder="Instruction système pour la création de contenu..."></textarea>
+        </div>
+        
+        <div class="setting-group">
+          <label class="ms-font-m">✏️ Instruction Modification :</label>
+          <textarea id="editInstruction" class="ms-TextField-field" rows="3" placeholder="Instruction système pour la modification de contenu..."></textarea>
+        </div>
+        
+        <div class="setting-group">
+          <label class="ms-font-m">📄 Documentation (lu à chaque requête) :</label>
+          <input type="file" id="docUpload" multiple accept=".txt,.md,.json" style="margin-bottom: 8px;">
+          <div id="docsList" class="docs-list"></div>
+        </div>
+        
+        <div class="row">
+          <button id="btnSaveProfile" class="ms-Button ms-Button--primary">
+            <span class="ms-Button-label">Sauvegarder Profil</span>
+          </button>
+          <button id="btnDuplicateProfile" class="ms-Button">
+            <span class="ms-Button-label">Dupliquer</span>
+          </button>
+          <button id="btnDeleteProfile" class="ms-Button">
+            <span class="ms-Button-label">Supprimer</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <section class="ms-welcome__main">
+      <div class="card">
+        <h4 class="ms-font-l">GPT Canvas</h4>
+        
+        <textarea id="createPrompt" placeholder="Décris ce que tu veux créer..." class="ms-TextField-field" style="height: 100px;"></textarea>
+        
+        
+        <div class="row">
+          <button id="btnGrab" class="ms-Button">
+            <span class="ms-Button-label">Prendre la sélection</span>
+          </button>
+        </div>
+        
+        <textarea id="src" placeholder="Sélection courante (automatique si texte sélectionné)..." class="ms-TextField-field" style="height: 60px;"></textarea>
+        
+        
+        <div class="row">
+          <button id="btnExecute" class="ms-Button ms-Button--primary">
+            <span class="ms-Button-label">Exécuter</span>
+          </button>
+        </div>
+        
+        <div id="msg" class="ms-font-s"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Loading overlay (caché par défaut) -->
+  <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+    <div class="spinner"></div>
+    <div class="loading-text">Traitement en cours...</div>
+  </div>
+
+  <script src="taskpane-v2.js"></script>
+</body>
+</html>

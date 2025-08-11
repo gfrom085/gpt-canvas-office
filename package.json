@@ -1,0 +1,28 @@
+{
+  "name": "gpt-canvas-office",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "certs": "office-addin-dev-certs install",
+    "serve": "node server.js",
+    "start:word": "npm run certs && office-addin-dev-settings appcontainer edgewebview --loopback --yes && office-addin-dev-settings appcontainer edgewebbrowser --loopback --yes && office-addin-dev-settings appcontainer manifest.xml --loopback --yes && concurrently \"node server.js\" \"office-addin-dev-settings sideload manifest.xml desktop --app Word\"",
+    "start:ppt": "npm run certs && office-addin-dev-settings appcontainer edgewebview --loopback --yes && office-addin-dev-settings appcontainer edgewebbrowser --loopback --yes && office-addin-dev-settings appcontainer manifest.xml --loopback --yes && concurrently \"node server.js\" \"office-addin-dev-settings sideload manifest.xml desktop --app PowerPoint\"",
+    "start:word:debug": "npm run certs && office-addin-dev-settings appcontainer edgewebview --loopback --yes && office-addin-dev-settings appcontainer edgewebbrowser --loopback --yes && office-addin-dev-settings appcontainer manifest.xml --loopback --yes && concurrently \"node server.js\" \"echo Y | office-addin-debugging start manifest.xml --app word\"",
+    "stop": "office-addin-debugging stop manifest.xml",
+    "manifest:validate": "office-addin-manifest validate manifest.xml"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "multer": "^1.4.5",
+    "office-addin-dev-certs": "^2.0.3",
+    "openai": "^4.56.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "office-addin-debugging": "^6.0.0",
+    "office-addin-manifest": "^1.13.0"
+  }
+}

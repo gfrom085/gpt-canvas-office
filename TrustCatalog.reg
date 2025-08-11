@@ -1,0 +1,6 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Microsoft\Office\16.0\WEF\TrustedCatalogs\{9f2b0f8c-2c78-4a7e-9a2e-1234567890ab}]
+"Id"="{9f2b0f8c-2c78-4a7e-9a2e-1234567890ab}"
+"Url"="\\\\Swift3\\office-addins"
+"Flags"=dword:00000001
